@@ -1,0 +1,42 @@
+buildscript {
+	ext {
+		springBootVersion = '1.4.3.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+ 
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+ 
+jar {
+	baseName = 'boot-gradle'
+	version = '0.0.1-SNAPSHOT'
+}
+ 
+repositories {
+	mavenCentral()
+}
+ 
+bootRepackage {
+    enabled = true
+}
+ 
+dependencies {
+	
+	
+
+    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
+    implementation 'com.google.guava:guava:23.0'
+
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+    compile('org.springframework.boot:spring-boot-starter',
+	'org.springframework.boot:spring-boot-starter-web',
+	'org.springframework.boot:spring-boot-starter-thymeleaf')
+}
