@@ -26,8 +26,8 @@ public class DemoController {
 
 	@GetMapping(value = "/test", produces = { "application/json;charset=UTF-8" })
 	public ResponseEntity<String> testRequests(HttpServletRequest httpServletRequest) throws Exception {
-		throw new Exception("Testing");
-		//return ResponseEntity.ok().body("Welcome");
+		//throw new Exception("Testing");
+		return ResponseEntity.ok().body("Welcome");
 	}
 
 }
