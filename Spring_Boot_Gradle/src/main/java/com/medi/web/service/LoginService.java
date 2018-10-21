@@ -24,11 +24,11 @@ public class LoginService{
 	public Boolean AuthenticateLogin(String Lname, String Lpassword, String role)
 	{
 		System.out.println("Inside AuthenticateLogin Start");
-		List<LoginInfoMaster> authenticateLoginList=loginRepository.AuthenticateUser(Lname, Lpassword);
-		if(null!=authenticateLoginList && !authenticateLoginList.isEmpty() && authenticateLoginList.size()>0)
+		LoginInfoMaster authenticateLoginList=loginRepository.AuthenticateUser(Lname, Lpassword);
+		if(null!=authenticateLoginList)
 		{
 			System.out.println("Inside AuthenticateLogin End Block true");
-			return AuthenticateRole(role,(List<UserRoleMaster>) authenticateLoginList.get(0).getUserRoleMaster());
+			return AuthenticateRole(role,(List<UserRoleMaster>) authenticateLoginList.getUserRoleMaster());
 		}
 		else
 		{

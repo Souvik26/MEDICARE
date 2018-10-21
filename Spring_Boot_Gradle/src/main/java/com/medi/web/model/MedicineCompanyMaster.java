@@ -23,6 +23,7 @@ public class MedicineCompanyMaster {
 	private Date createdDate;
 	@Column(name = "MODIFIED_DATE")
 	private Date modifiedDate;
+	
 	public int getMedicineId() {
 		return medicineId;
 	}
