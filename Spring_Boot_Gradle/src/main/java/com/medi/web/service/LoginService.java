@@ -29,18 +29,18 @@ public class LoginService{
 	 */
 	public LoginInfoView authenticateLogin(final LoginInfoMaster loginInfoMaster) throws BusinessException
 	{
-		LoginInfoMaster authenticateDLoginInfo= null;
+		LoginInfoMaster authenticatedLoginInfo= null;
 		try {
-			authenticateDLoginInfo=loginRepository.authenticateUser(loginInfoMaster);
+			authenticatedLoginInfo=loginRepository.authenticateUser(loginInfoMaster);
 		}catch(Exception ex) {
 			throw new BusinessException(properties.getProperty(GlobalConstant.ERR_DATABASE_OPERATION_CODE),properties.getProperty(GlobalConstant.ERR_DATABASE_OPERATION_DETAILS));
 		}
 		
-		if(null!=authenticateDLoginInfo)
+		if(null!=authenticatedLoginInfo)
 		{
-			validateUserInfo(loginInfoMaster,authenticateDLoginInfo);
+			validateUserInfo(loginInfoMaster,authenticatedLoginInfo);
 			final LoginInfoView loginInfoView =new LoginInfoView();
-			BeanUtils.copyProperties(authenticateDLoginInfo, loginInfoView);
+			BeanUtils.copyProperties(authenticatedLoginInfo, loginInfoView);
 			return loginInfoView;
 		}
 		else

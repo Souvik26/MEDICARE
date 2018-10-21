@@ -12,17 +12,14 @@ public class CompanyService {
 	@Autowired
 	private CompanyRepository companyRepository;
 	
-	public void InsertCompany(final MedicineCompanyMaster medicineCompanyMaster)
+	public void insertCompany(final MedicineCompanyMaster medicineCompanyMaster)
 	{
 		companyRepository.save(medicineCompanyMaster);
 	}
 	
-	/*public MedicalCompany updateCompany(final String companyName,final MedicineCompanyMaster medicineCompanyMaster)
+	public MedicineCompanyMaster getCompany(final String companyName)
 	{
-		MedicalCompany medicalCompanyTemp=new MedicalCompany();
-		medicalCompanyTemp=(MedicalCompany)companyRepository.CompanySelected(companyName);
-		companyRepository.save(medicalCompany);
-		return medicalCompanyTemp;
-	}*/
-
+		return companyRepository.companySelected(companyName);
+	}
+	
 }
