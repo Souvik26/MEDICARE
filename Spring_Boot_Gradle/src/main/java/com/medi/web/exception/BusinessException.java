@@ -11,6 +11,7 @@ public class BusinessException extends Exception {
 		super();
 	}
 
+	
 	/**
 	 * @param errorResponseCode
 	 * @param errorResponseMessage

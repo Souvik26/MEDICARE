@@ -1,27 +1,41 @@
 package com.medi.web.util;
 
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.medi.web.view.LoginInfoView;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Clock;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.SignatureException;
+import io.jsonwebtoken.UnsupportedJwtException;
+import io.jsonwebtoken.impl.DefaultClock;
 
 @Component
 public class JwtTokenUtil {
 
-	/*@Value("${jwt.secret}")
+	@Value("${jwt.secret}")
 	private String secret;
 	
 	@Value("${jwt.expiration}")
 	private Long expiration;
 
-	public String generateWebToken(UserInfo userInfo) {
+	public String generateWebToken(LoginInfoView loginInfoView) {
 		final Clock clock = DefaultClock.INSTANCE;
 		final Date currentDate = clock.now();
 		final Date expirationDate = getExpirationDate(currentDate);
-		final Claims claims = Jwts.claims().setSubject(userInfo.getUserName());
-		claims.setId(String.valueOf(userInfo.getUserId()));
+		final Claims claims = Jwts.claims().setSubject(loginInfoView.getEmail());
+		claims.setId(String.valueOf(loginInfoView.getUserId()));
 		claims.setIssuedAt(currentDate);
 		claims.setExpiration(expirationDate);
-		claims.put("roleId", userInfo.getRoleId());
-		claims.put("emailAddress", userInfo.getEmail());
+		claims.put("roleId", loginInfoView.getUserRole());
+		claims.put("emailAddress", loginInfoView.getEmail());
 		return Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.HS512, secret).compact();
 	}
 
@@ -47,19 +61,15 @@ public class JwtTokenUtil {
 		return false;
 	}
 
-	public UserInfo retrieveUserFromToken(String token) {
-		UserInfo userInfo = null;
-		try {
+	public LoginInfoView retrieveUserFromToken(String token) {
+		LoginInfoView loginInfoView = null;
 			final Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
-			userInfo = new UserInfo();
-			userInfo.setUserId(claims.getId());
-			userInfo.setUserName(claims.getSubject());
-			userInfo.setEmail((String) claims.get("emailAddress"));
-			userInfo.setRoleId(claims.get("roleId").toString());
-		} catch (Exception ex) {
-			System.out.println("Exception caught");
-		}
-		return userInfo;
-	}*/
+			loginInfoView = new LoginInfoView();
+			loginInfoView.setUserId(claims.getId());
+			loginInfoView.setUserName(claims.getSubject());
+			loginInfoView.setEmail((String) claims.get("emailAddress"));
+			loginInfoView.setUserRole(claims.get("roleId").toString());
+		return loginInfoView;
+	}
 
 }

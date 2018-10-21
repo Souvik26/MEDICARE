@@ -1,54 +1,79 @@
 package com.medi.web.service;
 
-import java.util.List;
-
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
+import com.medi.web.constant.GlobalConstant;
+import com.medi.web.exception.BusinessException;
 import com.medi.web.model.LoginInfoMaster;
-import com.medi.web.model.UserRoleMaster;
 import com.medi.web.repository.LoginRepository;
+import com.medi.web.view.LoginInfoView;
 
 @Service
 public class LoginService{
 
 	@Autowired
+	private Environment properties;
+	@Autowired
 	private LoginRepository loginRepository;
 	
-	public void registerLogin(LoginInfoMaster loginInfoMaster)
+	/**
+	 * 
+	 * Login Credential Validation in Database
+	 * 
+	 * @param loginInfoMaster
+	 * @return LoginInfoMaster
+	 * @throws BusinessException
+	 */
+	public LoginInfoView authenticateLogin(final LoginInfoMaster loginInfoMaster) throws BusinessException
 	{
-		System.out.println("Inside registerLogin Start");
-		loginRepository.save(loginInfoMaster);
-	}
-	
-	public Boolean AuthenticateLogin(String Lname, String Lpassword, String role)
-	{
-		System.out.println("Inside AuthenticateLogin Start");
-		List<LoginInfoMaster> authenticateLoginList=loginRepository.AuthenticateUser(Lname, Lpassword);
-		if(null!=authenticateLoginList && !authenticateLoginList.isEmpty() && authenticateLoginList.size()>0)
+		LoginInfoMaster authenticateDLoginInfo= null;
+		try {
+			authenticateDLoginInfo=loginRepository.authenticateUser(loginInfoMaster);
+		}catch(Exception ex) {
+			throw new BusinessException(properties.getProperty(GlobalConstant.ERR_DATABASE_OPERATION_CODE),properties.getProperty(GlobalConstant.ERR_DATABASE_OPERATION_DETAILS));
+		}
+		
+		if(null!=authenticateDLoginInfo)
 		{
-			System.out.println("Inside AuthenticateLogin End Block true");
-			return AuthenticateRole(role,(List<UserRoleMaster>) authenticateLoginList.get(0).getUserRoleMaster());
+			validateUserInfo(loginInfoMaster,authenticateDLoginInfo);
+			final LoginInfoView loginInfoView =new LoginInfoView();
+			BeanUtils.copyProperties(authenticateDLoginInfo, loginInfoView);
+			return loginInfoView;
 		}
 		else
 		{
-			System.out.println("Inside AuthenticateLogin End Block false");
-			return false;
+			throw new BusinessException(properties.getProperty(GlobalConstant.ERR_INVALID_USER_CODE),properties.getProperty(GlobalConstant.ERR_INVALID_USER_DETAILS));
 		}
 	}
 	
-	private Boolean AuthenticateRole(String role,List<UserRoleMaster> roleList)
-	{
-		System.out.println("Inside AuthenticateRole Start");
-		if(null!=roleList && roleList.size()>0 && roleList.contains(role))
-		{
-			System.out.println("Inside AuthenticateRole End Block true");
-			return true;
+	/**
+	 * 
+	 * @param loginInfoMaster
+	 * @param authenticateDLoginInfo
+	 * @throws BusinessException
+	 */
+	private void validateUserInfo(final LoginInfoMaster loginInfoMaster,final LoginInfoMaster authenticateDLoginInfo) throws BusinessException{
+		if(!loginInfoMaster.getPassword().equals(authenticateDLoginInfo.getPassword())) {
+			throw new BusinessException(properties.getProperty(GlobalConstant.ERR_INVALID_USER_CODE),properties.getProperty(GlobalConstant.ERR_INVALID_USER_DETAILS));
 		}
-		else
-		{
-			System.out.println("Inside AuthenticateRole End Block false");
-			return false;
+	}
+	
+	/**
+	 * 
+	 * Register New User
+	 * 
+	 * @param loginInfoMaster
+	 * @throws BusinessException
+	 */
+	public LoginInfoMaster registerLoginCredentials(final LoginInfoMaster loginInfoMaster) throws BusinessException
+	{
+		try {
+			return loginRepository.save(loginInfoMaster);
+		}catch(Exception ex) {
+			throw new BusinessException("ERR0001","Error in Database Operation");
 		}
 	}
 }

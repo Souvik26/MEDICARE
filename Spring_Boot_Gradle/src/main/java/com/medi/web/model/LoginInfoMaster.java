@@ -16,21 +16,23 @@ public class LoginInfoMaster {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "USER_ID")
-	private int id;
+	private int userId;
 	@Column(name = "USER_NAME")
 	private String userName;
+	@Column(name = "EMAIL",unique=true)
+	private String email;	
 	@Column(name = "PASSWORD")
 	private String password;
 	
 	@OneToMany(mappedBy="loginInfoMaster",cascade=CascadeType.ALL)
-	private Collection<UserRoleMaster> userRoleMaster=new ArrayList<UserRoleMaster>();
+	private Collection<UserRoleMaster> userRoleMaster=new ArrayList<UserRoleMaster>();	
 
-	public int getId() {
-		return id;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public String getUserName() {
@@ -39,6 +41,14 @@ public class LoginInfoMaster {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
