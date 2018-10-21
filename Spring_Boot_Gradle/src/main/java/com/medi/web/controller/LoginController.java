@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.medi.web.model.ErrorResponse;
-import com.medi.web.model.LoginModal;
+import com.medi.web.model.LoginInfoMaster;
 import com.medi.web.service.LoginService;
 
 import io.swagger.annotations.ApiOperation;
@@ -34,13 +34,13 @@ public class LoginController {
 			@ApiResponse(code = 503, message = "Service Unavailable", response = ErrorResponse.class) })
 
 	@GetMapping(value = "/test", produces = { "application/json;charset=UTF-8" })
-	public ResponseEntity<LoginModal> testRequests(HttpServletRequest httpServletRequest) throws Exception {
+	public ResponseEntity<LoginInfoMaster> testRequests(HttpServletRequest httpServletRequest) throws Exception {
 		//throw new Exception("Testing");
-		LoginModal loginModal = new LoginModal();
-		loginModal.setId(5);
+		final LoginInfoMaster loginInfoMaster = new LoginInfoMaster();
+		loginInfoMaster.setId(5);
 		System.err.println("loginService.AuthenticateLogin "+loginService.AuthenticateLogin("Sned", "12345", "Admin"));
 		
-		return ResponseEntity.ok().body(loginModal);
+		return ResponseEntity.ok().body(loginInfoMaster);
 	}
 	
 	@PostMapping("/test2")

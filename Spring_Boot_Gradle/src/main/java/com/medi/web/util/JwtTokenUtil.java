@@ -1,27 +1,12 @@
 package com.medi.web.util;
 
-import java.util.Date;
-
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import com.medi.web.model.UserInfo;
-
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Clock;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.SignatureException;
-import io.jsonwebtoken.UnsupportedJwtException;
-import io.jsonwebtoken.impl.DefaultClock;
 
 
 @Component
 public class JwtTokenUtil {
 
-	@Value("${jwt.secret}")
+	/*@Value("${jwt.secret}")
 	private String secret;
 	
 	@Value("${jwt.expiration}")
@@ -75,6 +60,6 @@ public class JwtTokenUtil {
 			System.out.println("Exception caught");
 		}
 		return userInfo;
-	}
+	}*/
 
 }

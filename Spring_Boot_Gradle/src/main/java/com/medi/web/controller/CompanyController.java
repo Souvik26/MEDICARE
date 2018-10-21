@@ -1,7 +1,5 @@
 package com.medi.web.controller;
 
-import java.util.Date;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.medi.web.model.ErrorResponse;
-import com.medi.web.model.MedicalCompany;
+import com.medi.web.model.MedicineCompanyMaster;
 import com.medi.web.service.CompanyService;
 
 import io.swagger.annotations.ApiOperation;
@@ -33,15 +31,15 @@ public class CompanyController {
 			@ApiResponse(code = 503, message = "Service Unavailable", response = ErrorResponse.class) })
 	
 	@GetMapping(value = "/testCompanyinsertion", produces = { "application/json;charset=UTF-8" })
-	public ResponseEntity<MedicalCompany> testCompanyinsertionRequests(HttpServletRequest httpServletRequest) throws Exception {
+	public ResponseEntity<MedicineCompanyMaster> testCompanyinsertionRequests(HttpServletRequest httpServletRequest) throws Exception {
 		//throw new Exception("Testing");
-		MedicalCompany mc=new MedicalCompany();
+		/*MedicineCompanyMaster mc=new MedicineCompanyMaster();
 		mc.setCompany_Name("Sned 56");
 		mc.setLedger_Number(256);
 		mc.setEntry_Date(new Date());
 		companyService.InsertCompany(mc);
-		System.err.println("companyService ");
-		
+		System.err.println("companyService ");*/
+		MedicineCompanyMaster mc=new MedicineCompanyMaster();
 		return ResponseEntity.ok().body(mc);
 	}
 
