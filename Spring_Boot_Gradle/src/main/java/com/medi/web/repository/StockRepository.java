@@ -10,6 +10,6 @@ import com.medi.web.model.StockMaster;
 
 @Repository
 public interface StockRepository extends JpaRepository<StockMaster, Integer>{
-	@Query("SELECT lm FROM StockMaster lm where medicineName=(:mName) and companyName=(:cName)")
+	@Query("SELECT lm FROM STOCK_MST_TB lm where medicineName=(:mName) and companyName=(:cName)")
 	StockMaster getStock(@Param("mName") String mediName, @Param("cName") String comName);
 }
