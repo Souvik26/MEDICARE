@@ -23,7 +23,21 @@ public class InvoiceMaster {
 	private float ratePerQuantity;
 	@Formula(" quantity * costPerQuantity")
 	private float cost;
+	private String customerName;
+	private int customerAge;
 	
+	public int getCustomerAge() {
+		return customerAge;
+	}
+	public void setCustomerAge(int customerAge) {
+		this.customerAge = customerAge;
+	}
+	public String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
 	public float getCost() {
 		return cost;
 	}
