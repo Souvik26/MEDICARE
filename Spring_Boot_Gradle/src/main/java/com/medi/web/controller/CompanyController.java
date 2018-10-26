@@ -82,8 +82,11 @@ public class CompanyController {
 	@PostMapping(value = "/saveCompany", produces = { "application/json;charset=UTF-8" })
 	public ResponseEntity<String> editCompany(@RequestBody final CompanyInfoView companyInfoView,HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) throws Exception {
 		
-		final MedicineCompanyMaster medicineCompanyMaster=new MedicineCompanyMaster();
-		BeanUtils.copyProperties(companyInfoView, medicineCompanyMaster);
+		final MedicineCompanyMaster medicineCompanyMaster=companyService.getCompany(companyInfoView.getCompanyName());
+		medicineCompanyMaster.setCreatedDate(companyInfoView.getCreatedDate());
+		medicineCompanyMaster.setMedicineName(companyInfoView.getMedicineName());
+		medicineCompanyMaster.setModifiedDate(companyInfoView.getModifiedDate());
+		//BeanUtils.copyProperties(companyInfoView, medicineCompanyMaster);
 		companyService.insertCompany(medicineCompanyMaster);
 		return ResponseEntity.ok().body(medicineCompanyMaster.getCompanyName()+" is Saved");
 	}
