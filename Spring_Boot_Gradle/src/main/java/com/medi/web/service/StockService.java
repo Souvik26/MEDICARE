@@ -26,11 +26,11 @@ public class StockService {
 		}
 	}
 	
-	public StockMaster getStock(String mediName,String comName) throws BusinessException
+	public StockMaster getStock(String comName) throws BusinessException
 	{
 		StockMaster getStockInfo=null;
 		try {
-			getStockInfo=stockRepository.getStock(mediName, comName);
+			getStockInfo=stockRepository.getStockByCompanyName(comName);
 			return getStockInfo;
 		}catch(Exception ex) {
 			throw new BusinessException(properties.getProperty(GlobalConstant.ERR_DATABASE_OPERATION_CODE),properties.getProperty(GlobalConstant.ERR_DATABASE_OPERATION_DETAILS));

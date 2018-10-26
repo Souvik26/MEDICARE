@@ -7,8 +7,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.medi.web.exception.BusinessException;
@@ -23,6 +25,7 @@ import io.swagger.annotations.ApiResponses;
 
 @CrossOrigin
 @RestController
+@RequestMapping("/services")
 public class CompanyController {
 	
 	@Autowired
@@ -68,7 +71,7 @@ public class CompanyController {
 			@ApiResponse(code = 500, message = "Internal Server Error (Server Error)", response = ErrorResponse.class),
 			@ApiResponse(code = 503, message = "Service Unavailable", response = ErrorResponse.class) })
 	
-	@PostMapping(value = "/getCompany", produces = { "application/json;charset=UTF-8" })
+	@GetMapping(value = "/getCompany", produces = { "application/json;charset=UTF-8" })
 	public ResponseEntity<MedicineCompanyMaster> getCompany(@RequestBody final String companyViewName,HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) throws Exception {
 		final MedicineCompanyMaster medicineCompanyMaster=companyService.getCompany(companyViewName);
 		return ResponseEntity.ok().body(medicineCompanyMaster);
