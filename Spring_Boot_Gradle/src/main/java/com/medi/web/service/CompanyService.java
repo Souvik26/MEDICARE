@@ -1,8 +1,11 @@
 package com.medi.web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
+import com.medi.web.constant.GlobalConstant;
+import com.medi.web.exception.BusinessException;
 import com.medi.web.model.MedicineCompanyMaster;
 import com.medi.web.repository.CompanyRepository;
 
@@ -10,16 +13,28 @@ import com.medi.web.repository.CompanyRepository;
 public class CompanyService {
 	
 	@Autowired
+	private Environment properties;
+	@Autowired
 	private CompanyRepository companyRepository;
 	
-	public void insertCompany(final MedicineCompanyMaster medicineCompanyMaster)
+	public void insertCompany(final MedicineCompanyMaster medicineCompanyMaster) throws BusinessException
 	{
-		companyRepository.save(medicineCompanyMaster);
+		try {
+			companyRepository.save(medicineCompanyMaster);
+		}catch(Exception ex) {
+			throw new BusinessException(properties.getProperty(GlobalConstant.ERR_DATABASE_OPERATION_CODE),properties.getProperty(GlobalConstant.ERR_DATABASE_OPERATION_DETAILS));
+		}
 	}
 	
-	public MedicineCompanyMaster getCompany(final String companyName)
+	public MedicineCompanyMaster getCompany(final String companyName) throws BusinessException
 	{
-		return companyRepository.companySelected(companyName);
+		MedicineCompanyMaster getCompanyInfo=null;
+		try {
+			getCompanyInfo=companyRepository.companySelected(companyName);
+			return getCompanyInfo;
+		}catch(Exception ex) {
+			throw new BusinessException(properties.getProperty(GlobalConstant.ERR_DATABASE_OPERATION_CODE),properties.getProperty(GlobalConstant.ERR_DATABASE_OPERATION_DETAILS));
+		}
 	}
 	
 }
