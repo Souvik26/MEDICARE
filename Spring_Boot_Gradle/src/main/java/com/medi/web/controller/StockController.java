@@ -1,5 +1,7 @@
 package com.medi.web.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -56,6 +58,19 @@ public class StockController {
 	public ResponseEntity<StockMaster> getStock(@RequestBody final String companyName,HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) throws Exception {
 		final StockMaster stockMasterTb=stockService.getStock(companyName);
 		return ResponseEntity.ok().body(stockMasterTb);
+	}
+	
+	@ApiOperation(nickname = "retrieveRequests", value = "This API is retrieve review requests against a particular reviewer id", response = String.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = String.class),
+			@ApiResponse(code = 400, message = "Bad Request", response = ErrorResponse.class),
+			@ApiResponse(code = 404, message = "Not Found", response = ErrorResponse.class),
+			@ApiResponse(code = 500, message = "Internal Server Error (Server Error)", response = ErrorResponse.class),
+			@ApiResponse(code = 503, message = "Service Unavailable", response = ErrorResponse.class) })
+	
+	@GetMapping(value = "/getAllStock", produces = { "application/json;charset=UTF-8" })
+	public ResponseEntity <List<StockMaster>> getAllStock(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) throws Exception {
+		final List<StockMaster> stockMasterTbList=stockService.getAllStock();
+		return ResponseEntity.ok().body(stockMasterTbList);
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.medi.web.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -103,6 +105,27 @@ public class CompanyController {
 		//BeanUtils.copyProperties(companyInfoView, medicineCompanyMaster);
 		companyService.insertCompany(medicineCompanyMaster);
 		return ResponseEntity.ok().body(medicineCompanyMaster.getCompanyName()+" is Saved");
+	}
+	
+	/**
+	 * 
+	 * Fetching Existing Company from Database
+	 * 
+	 * @param companyViewName
+	 * @return medicineCompanyMaster
+	 * @throws BusinessException
+	 */
+	@ApiOperation(nickname = "retrieveRequests", value = "This API is retrieve review requests against a particular reviewer id", response = String.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = String.class),
+			@ApiResponse(code = 400, message = "Bad Request", response = ErrorResponse.class),
+			@ApiResponse(code = 404, message = "Not Found", response = ErrorResponse.class),
+			@ApiResponse(code = 500, message = "Internal Server Error (Server Error)", response = ErrorResponse.class),
+			@ApiResponse(code = 503, message = "Service Unavailable", response = ErrorResponse.class) })
+	
+	@GetMapping(value = "/getAllCompanies", produces = { "application/json;charset=UTF-8" })
+	public ResponseEntity<List<MedicineCompanyMaster>> getAllCompanies(@RequestBody final String companyViewName,HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) throws Exception {
+		final List<MedicineCompanyMaster> medicineCompanyMasterList=companyService.getAllCompanies();
+		return ResponseEntity.ok().body(medicineCompanyMasterList);
 	}
 	
 

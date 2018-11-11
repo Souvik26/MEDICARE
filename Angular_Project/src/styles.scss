@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+body,html{
+    font-size: 1.0rem;
+    font-family: Verdana;
+}
+.table-padding {
+    padding: 2%;
+}
+table thead tr th{
+    font-size: 1.3rem;
+}
+
+table tbody tr td{
+    font-size: 1.0rem;
+}

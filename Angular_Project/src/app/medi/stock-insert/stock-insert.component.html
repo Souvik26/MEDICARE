@@ -1,61 +1,121 @@
-<table class="table">
-  <thead class="black white-text">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+<div class="bg"> 
+<!-- Default form register -->
+<div class="table-padding">
+<form [formGroup]="addStockForm" class="text-center border border-light p-5">
+        <p class="h4 mb-4">Add Stock Details</p>
+        <div class="form-row mb-4">
+            <div class="col-sm">
+                <!-- Batch Id -->
+                <input type="text" id="batchId" class="form-control" placeholder="Batch Id" formControlName="batchId">
+            </div>
+            <div class="col-sm">
+                <!-- Medicine name -->
+                <input type="text" id="medicineName" class="form-control" placeholder="Medicne name" formControlName="medicineName">
+            </div>
+            <div class="col-sm">
+                <!-- Company name -->
+                <input type="text" id="companyName" class="form-control" placeholder="Company name" formControlName="companyName">
+            </div>
+        </div>
+        <div class="form-row mb-4">
+            <div class="col-sm">
+                <!-- Batch Prize -->
+                <input type="text" id="batchPrize" class="form-control" placeholder="Batch Prize" formControlName="batchPrize">
+            </div>
+            <div class="col-sm">
+                <div class="input-group input-group-md">
+                    <!-- Manufacture date -->
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="manufactureDateLabel">Manufacture date</span>
+                    </div>
+                    <input type="date" id="manufactureDate" class="form-control" formControlName="manufactureDate">
+                </div>
+            </div>
+        </div>
+        <div class="form-row mb-4">
+            <div class="col-sm">
+                <!-- Total Quantity -->
+                <input type="text" id="totalQuantity" class="form-control" placeholder="Total Quantity" formControlName="totalQuantity">
+            </div>
+            <div class="col-sm">
+                <div class="input-group input-group-md">
+                    <!-- Expiry date -->
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="expiryDateLabel">Expiry date</span>
+                    </div>
+                    <input type="date" id="expiryDate" class="form-control" formControlName="expiryDate">
+                </div>
+            </div>
+        </div>
+        <div class="form-row mb-4">
+            <div class="col-sm">
+                <!-- Cost Per Quantity -->
+                <input type="text" id="costPerQuantity" class="form-control" placeholder="Cost Per Quantity" formControlName="costPerQuantity">
+            </div>
+            <div class="col-sm">
+                <!-- Rate Per Quantity -->
+                <input type="text" id="ratePerQuantity" class="form-control" placeholder="Rate Per Quantity" formControlName="ratePerQuantity">
+            </div>
+        </div>
+        <!-- Sign up button -->
+        <!-- <button class="btn btn-info my-4 btn-block" type="submit">Add Stock</button> -->
+        <button class="btn btn-info my-4" type="submit" (click)="insertStock();">Add Stock</button>
+        <button class="btn btn-danger my-4" type="submit" (click)="resetStock();">Reset Stock</button>
+    </form>
+</div>
+<!-- Default form register -->
+<div class="table-padding"> 
+<table class="table table-striped" cellspacing="0">
+    <thead style="font-size: 1.3rem;">
+      <tr>
+        <th class="th-sm">Sl No
+          <i class="fa fa-sort float-right" aria-hidden="true"></i>
+        </th>
+        <th class="th-sm">Batch Id
+          <i class="fa fa-sort float-right" aria-hidden="true"></i>
+        </th>
+        <th class="th-sm">Medicine Name
+          <i class="fa fa-sort float-right" aria-hidden="true"></i>
+        </th>
+        <th class="th-sm">Expiry Date
+          <i class="fa fa-sort float-right" aria-hidden="true"></i>
+        </th>
+        <th class="th-sm">Quantity
+          <i class="fa fa-sort float-right" aria-hidden="true"></i>
+        </th>
+        <th class="th-sm">Cost
+            <i class="fa fa-sort float-right" aria-hidden="true"></i>
+          </th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td>Shad Decker</td>
+        <td>Regional Director</td>
+        <td>Edinburgh</td>
+        <td>51</td>
+        <td>TOT-140, AVAIL-60</td>
+        <td>$183,000</td>
+      </tr>
+      <tr>
+        <td>Michael Bruce</td>
+        <td>Javascript Developer</td>
+        <td>Singapore</td>
+        <td>29</td>
+        <td>2011/06/27</td>
+        <td>$183,000</td>
+      </tr>
+      <tr>
+        <td>Donna Snider</td>
+        <td>Customer Support</td>
+        <td>New York</td>
+        <td>27</td>
+        <td>2011/01/25</td>
+        <td>$112,000</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
 
-<table class="table">
-  <thead class="grey lighten-2">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>

@@ -1,5 +1,7 @@
 package com.medi.web.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
@@ -32,6 +34,17 @@ public class CompanyService {
 		try {
 			getCompanyInfo=companyRepository.companySelected(companyName);
 			return getCompanyInfo;
+		}catch(Exception ex) {
+			throw new BusinessException(properties.getProperty(GlobalConstant.ERR_DATABASE_OPERATION_CODE),properties.getProperty(GlobalConstant.ERR_DATABASE_OPERATION_DETAILS));
+		}
+	}
+	
+	public List<MedicineCompanyMaster> getAllCompanies() throws BusinessException
+	{
+		List<MedicineCompanyMaster> getCompanyInfoList=null;
+		try {
+			getCompanyInfoList=companyRepository.findAll();
+			return getCompanyInfoList;
 		}catch(Exception ex) {
 			throw new BusinessException(properties.getProperty(GlobalConstant.ERR_DATABASE_OPERATION_CODE),properties.getProperty(GlobalConstant.ERR_DATABASE_OPERATION_DETAILS));
 		}
