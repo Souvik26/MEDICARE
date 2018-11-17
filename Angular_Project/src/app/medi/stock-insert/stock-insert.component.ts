@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MedicineService } from '../medicine.service';
+import { error } from 'util';
+import { StockInsertResponse } from './stock-insert-response';
 
 @Component({
   selector: 'stock-insert',
@@ -9,8 +11,11 @@ import { MedicineService } from '../medicine.service';
 })
 export class StockInsertComponent implements OnInit {
   addStockForm:FormGroup;
+  stockDetails:StockInsertResponse[];
 
-  constructor(private _medicineService: MedicineService) { }
+  constructor(private _medicineService: MedicineService) {
+    this.getAllStock();
+   }
 
   ngOnInit() {
     this.createStockFormGroup();
@@ -53,11 +58,30 @@ export class StockInsertComponent implements OnInit {
   };
 
   insertStock = () => {
-    console.log(this.addStockForm.getRawValue());
-    this._medicineService.addStock(this.addStockForm.getRawValue());
+    this._medicineService.addStock(this.addStockForm.getRawValue()).subscribe(
+        res => {
+          console.log("The Response :: "+res);
+          this.getAllStock();
+        },
+        error => {
+          console.log("The Response :: "+error);
+        }
+        );
   };
 
   resetStock = () => {
     this.createStockFormGroup();
+  };
+
+  getAllStock = () => {
+    this._medicineService.getAllStock().subscribe(
+        res => {
+          this.stockDetails=res;
+          console.log("The Response :: "+res);
+        },
+        error => {
+          console.log("The Response :: "+error);
+        }
+        );
   };
 }

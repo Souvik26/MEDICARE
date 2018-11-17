@@ -6,32 +6,63 @@
         <div class="form-row mb-4">
             <div class="col-sm">
                 <!-- Batch Id -->
-                <input type="text" id="batchId" class="form-control" placeholder="Batch Id" formControlName="batchId">
+                <div class="input-group input-group-md">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="batchLabel">Batch</span>
+                    </div>
+                    <input type="text" id="batchId" class="form-control" placeholder="Batch Id" formControlName="batchId">
+                </div>
+            
             </div>
             <div class="col-sm">
                 <!-- Batch Price -->
-                <input type="text" id="batchPrice" class="form-control" placeholder="Batch Price" formControlName="batchPrice">
+                <div class="input-group input-group-md">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="priceLabel">Price</span>
+                    </div>
+                    <input type="text" id="batchPrice" class="form-control" placeholder="Batch Price" formControlName="batchPrice">
+                </div>
             </div>
             
         </div>
         <div class="form-row mb-4">
             <div class="col-sm">
                 <!-- Medicine name -->
-                <input type="text" id="medicineName" class="form-control" placeholder="Medicne name" formControlName="medicineName">
+                <div class="input-group input-group-md">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="medicineLabel">Medicine</span>
+                    </div>
+                    <input type="text" id="medicineName" class="form-control" placeholder="Medicne name" formControlName="medicineName">
+                </div>
             </div>
 			<div class="col-sm">
                 <!-- Company name -->
-                <input type="text" id="companyName" class="form-control" placeholder="Company name" formControlName="companyName">
+                <div class="input-group input-group-md">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="companyLabel">Company</span>
+                    </div>
+                    <input type="text" id="companyName" class="form-control" placeholder="Company name" formControlName="companyName">
+                </div>
             </div>
         </div>
         <div class="form-row mb-4">
             <div class="col-sm">
                 <!-- Total Quantity -->
-                <input type="text" id="totalQuantity" class="form-control" placeholder="Total Quantity" formControlName="totalQuantity">
+                <div class="input-group input-group-md">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="quantityLabel">Quantity</span>
+                    </div>
+                    <input type="text" id="totalQuantity" class="form-control" placeholder="Total Quantity" formControlName="totalQuantity">
+                </div>
             </div>
             <div class="col-sm">
                 <!-- Cost Per Quantity -->
+                <div class="input-group input-group-md">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="costQuantityLabel">Cost/Quantity</span>
+                        </div>
                 <input type="text" id="costPerQuantity" class="form-control" placeholder="Cost Per Quantity" formControlName="costPerQuantity">
+                </div>
             </div>
         </div>
         <div class="form-row mb-4">
@@ -39,7 +70,7 @@
                 <div class="input-group input-group-md">
                     <!-- Manufacture date -->
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="manufactureDateLabel">Manufacture date</span>
+                        <span class="input-group-text" id="manufactureDateLabel">Mfg date</span>
                     </div>
                     <input type="date" id="manufactureDate" class="form-control" formControlName="manufactureDate">
                 </div>
@@ -48,7 +79,7 @@
                 <div class="input-group input-group-md">
                     <!-- Expiry date -->
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="expiryDateLabel">Expiry date</span>
+                        <span class="input-group-text" id="expiryDateLabel">Exp date</span>
                     </div>
                     <input type="date" id="expiryDate" class="form-control" formControlName="expiryDate">
                 </div>
@@ -65,51 +96,42 @@
 <table class="table table-striped" cellspacing="0">
     <thead style="font-size: 1.3rem;">
       <tr>
-        <th class="th-sm">Sl No
+        <th class="th-sm">#
           <i class="fa fa-sort float-right" aria-hidden="true"></i>
         </th>
-        <th class="th-sm">Batch Id
+        <th class="th-sm">Batch
           <i class="fa fa-sort float-right" aria-hidden="true"></i>
         </th>
-        <th class="th-sm">Medicine Name
+        <th class="th-sm">Medicine
           <i class="fa fa-sort float-right" aria-hidden="true"></i>
         </th>
-        <th class="th-sm">Expiry Date
+        <th class="th-sm">Mfg Date
+                <i class="fa fa-sort float-right" aria-hidden="true"></i>
+        </th>
+        <th class="th-sm">Exp Date
           <i class="fa fa-sort float-right" aria-hidden="true"></i>
         </th>
         <th class="th-sm">Quantity
           <i class="fa fa-sort float-right" aria-hidden="true"></i>
         </th>
-        <th class="th-sm">Cost
+        <th class="th-sm">Cost/Quantity
             <i class="fa fa-sort float-right" aria-hidden="true"></i>
-          </th>
+        </th>
+        <th class="th-sm">Sell (%)
+            <i class="fa fa-sort float-right" aria-hidden="true"></i>
+        </th>
       </tr>
     </thead>
     <tbody>
-      
-      <tr>
-        <td>Shad Decker</td>
-        <td>Regional Director</td>
-        <td>Edinburgh</td>
-        <td>51</td>
-        <td>TOT-140, AVAIL-60</td>
-        <td>$183,000</td>
-      </tr>
-      <tr>
-        <td>Michael Bruce</td>
-        <td>Javascript Developer</td>
-        <td>Singapore</td>
-        <td>29</td>
-        <td>2011/06/27</td>
-        <td>$183,000</td>
-      </tr>
-      <tr>
-        <td>Donna Snider</td>
-        <td>Customer Support</td>
-        <td>New York</td>
-        <td>27</td>
-        <td>2011/01/25</td>
-        <td>$112,000</td>
+        <tr *ngFor="let stock of stockDetails; let i= index">
+        <td>{{i+1}}</td>
+        <td>{{stock.batchId}}</td>
+        <td>{{stock.medicineName}}</td>
+        <td>{{stock.manufactureDate}}</td>
+        <td>{{stock.expiryDate}}</td>
+        <td>{{stock.quantity}}</td>
+        <td>{{stock.price}}</td>
+        <td>20</td>
       </tr>
     </tbody>
   </table>
