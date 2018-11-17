@@ -9,19 +9,32 @@
                 <input type="text" id="batchId" class="form-control" placeholder="Batch Id" formControlName="batchId">
             </div>
             <div class="col-sm">
+                <!-- Batch Price -->
+                <input type="text" id="batchPrice" class="form-control" placeholder="Batch Price" formControlName="batchPrice">
+            </div>
+            
+        </div>
+        <div class="form-row mb-4">
+            <div class="col-sm">
                 <!-- Medicine name -->
                 <input type="text" id="medicineName" class="form-control" placeholder="Medicne name" formControlName="medicineName">
             </div>
-            <div class="col-sm">
+			<div class="col-sm">
                 <!-- Company name -->
                 <input type="text" id="companyName" class="form-control" placeholder="Company name" formControlName="companyName">
             </div>
         </div>
         <div class="form-row mb-4">
             <div class="col-sm">
-                <!-- Batch Prize -->
-                <input type="text" id="batchPrize" class="form-control" placeholder="Batch Prize" formControlName="batchPrize">
+                <!-- Total Quantity -->
+                <input type="text" id="totalQuantity" class="form-control" placeholder="Total Quantity" formControlName="totalQuantity">
             </div>
+            <div class="col-sm">
+                <!-- Cost Per Quantity -->
+                <input type="text" id="costPerQuantity" class="form-control" placeholder="Cost Per Quantity" formControlName="costPerQuantity">
+            </div>
+        </div>
+        <div class="form-row mb-4">
             <div class="col-sm">
                 <div class="input-group input-group-md">
                     <!-- Manufacture date -->
@@ -31,13 +44,7 @@
                     <input type="date" id="manufactureDate" class="form-control" formControlName="manufactureDate">
                 </div>
             </div>
-        </div>
-        <div class="form-row mb-4">
-            <div class="col-sm">
-                <!-- Total Quantity -->
-                <input type="text" id="totalQuantity" class="form-control" placeholder="Total Quantity" formControlName="totalQuantity">
-            </div>
-            <div class="col-sm">
+			<div class="col-sm">
                 <div class="input-group input-group-md">
                     <!-- Expiry date -->
                     <div class="input-group-prepend">
@@ -47,19 +54,9 @@
                 </div>
             </div>
         </div>
-        <div class="form-row mb-4">
-            <div class="col-sm">
-                <!-- Cost Per Quantity -->
-                <input type="text" id="costPerQuantity" class="form-control" placeholder="Cost Per Quantity" formControlName="costPerQuantity">
-            </div>
-            <div class="col-sm">
-                <!-- Rate Per Quantity -->
-                <input type="text" id="ratePerQuantity" class="form-control" placeholder="Rate Per Quantity" formControlName="ratePerQuantity">
-            </div>
-        </div>
         <!-- Sign up button -->
         <!-- <button class="btn btn-info my-4 btn-block" type="submit">Add Stock</button> -->
-        <button class="btn btn-info my-4" type="submit" (click)="insertStock();">Add Stock</button>
+        <button class="btn btn-info my-4" type="submit" (click)="insertStock();" [disabled]="!addStockForm.valid">Add Stock</button>
         <button class="btn btn-danger my-4" type="submit" (click)="resetStock();">Reset Stock</button>
     </form>
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MedicineService } from '../medicine.service';
 
 @Component({
@@ -18,15 +18,37 @@ export class StockInsertComponent implements OnInit {
 
   createStockFormGroup = () => {
     this.addStockForm = new FormGroup({
-      batchId: new FormControl(''),
-      medicineName: new FormControl(''),
-      companyName: new FormControl(''),
-      batchPrize: new FormControl(''),
-      manufactureDate: new FormControl(''),
-      totalQuantity: new FormControl(''),
-      expiryDate: new FormControl(''),
-      costPerQuantity: new FormControl(''),
-      ratePerQuantity: new FormControl('')
+      batchId: new FormControl('',Validators.compose([
+        Validators.required, 
+        Validators.minLength(1)
+      ])
+      ),
+      medicineName: new FormControl('',Validators.compose([
+        Validators.required, 
+        Validators.minLength(1)
+      ])),
+      companyName: new FormControl('',Validators.compose([
+        Validators.required, 
+        Validators.minLength(1)
+      ])),
+      batchPrice: new FormControl('',Validators.compose([
+        Validators.required, 
+        Validators.min(0)
+      ])),
+      manufactureDate: new FormControl('',Validators.compose([
+        Validators.required
+      ])),
+      totalQuantity: new FormControl('',Validators.compose([
+        Validators.required, 
+        Validators.min(1)
+      ])),
+      expiryDate: new FormControl('',Validators.compose([
+        Validators.required
+      ])),
+      costPerQuantity: new FormControl('',Validators.compose([
+        Validators.required, 
+        Validators.min(0)
+      ])),
     });
   };
 

@@ -5,23 +5,18 @@ import java.util.Date;
 public class StockInfoView {
 
 	private Date manufactureDate;
-	private int batchId;
+	private String batchId;
 	private float prize;
 	private String medicineName;
 	private String companyName;
 	private QuantityInfoView quantity;
+	private Date expiryDate;
 	
 	public Date getManufactureDate() {
 		return manufactureDate;
 	}
 	public void setManufactureDate(Date manufactureDate) {
 		this.manufactureDate = manufactureDate;
-	}
-	public int getBatchId() {
-		return batchId;
-	}
-	public void setBatchId(int batchId) {
-		this.batchId = batchId;
 	}
 	public float getPrize() {
 		return prize;
@@ -53,5 +48,11 @@ public class StockInfoView {
 	public void setExpiryDate(Date expiryDate) {
 		this.expiryDate = expiryDate;
 	}
-	private Date expiryDate;
+	public String getBatchId() {
+		return batchId;
+	}
+	public void setBatchId(String batchId) {
+		this.batchId = batchId;
+	}
+
 }

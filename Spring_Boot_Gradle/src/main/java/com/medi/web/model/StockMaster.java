@@ -18,8 +18,8 @@ public class StockMaster {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int stockId;
 	private Date manufactureDate;
-	private int batchId;
-	private float prize;
+	private String batchId;
+	private float price;
 	@Column(name = "MEDICINE_NAME")
 	private String medicineName;
 	@Column(name = "COMPANY_NAME")
@@ -48,18 +48,6 @@ public class StockMaster {
 	public void setExpiryDate(Date expiryDate) {
 		this.expiryDate = expiryDate;
 	}
-	public int getBatchId() {
-		return batchId;
-	}
-	public void setBatchId(int batchId) {
-		this.batchId = batchId;
-	}
-	public float getPrize() {
-		return prize;
-	}
-	public void setPrize(float prize) {
-		this.prize = prize;
-	}
 	public Quantity getQuantity() {
 		return quantity;
 	}
@@ -78,5 +66,16 @@ public class StockMaster {
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
 	}
-
+	public String getBatchId() {
+		return batchId;
+	}
+	public void setBatchId(String batchId) {
+		this.batchId = batchId;
+	}
+	public float getPrice() {
+		return price;
+	}
+	public void setPrice(float price) {
+		this.price = price;
+	}
 }

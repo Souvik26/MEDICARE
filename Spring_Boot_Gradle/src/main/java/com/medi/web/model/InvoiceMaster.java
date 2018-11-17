@@ -17,10 +17,11 @@ public class InvoiceMaster {
 	private int invoiceId;
 	private int quantity;
 	private String description;
-	private int batchId;
+	private String batchId;
+
 	private Date expiryDate;
 	private float costPerQuantity;
-	private float ratePerQuantity;
+	//private float ratePerQuantity;
 	@Formula(" quantity * costPerQuantity")
 	private float cost;
 	private String customerName;
@@ -41,12 +42,7 @@ public class InvoiceMaster {
 	public float getCost() {
 		return cost;
 	}
-	public float getRatePerQuantity() {
-		return ratePerQuantity;
-	}
-	public void setRatePerQuantity(float ratePerQuantity) {
-		this.ratePerQuantity = ratePerQuantity;
-	}
+
 	public float getCostPerQuantity() {
 		return costPerQuantity;
 	}
@@ -71,17 +67,17 @@ public class InvoiceMaster {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getBatchId() {
-		return batchId;
-	}
-	public void setBatchId(int batchId) {
-		this.batchId = batchId;
-	}
 	public Date getExpiryDate() {
 		return expiryDate;
 	}
 	public void setExpiryDate(Date expiryDate) {
 		this.expiryDate = expiryDate;
+	}
+	public String getBatchId() {
+		return batchId;
+	}
+	public void setBatchId(String batchId) {
+		this.batchId = batchId;
 	}
 
 }

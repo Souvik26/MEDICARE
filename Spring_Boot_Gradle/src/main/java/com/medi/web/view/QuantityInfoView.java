@@ -5,7 +5,6 @@ public class QuantityInfoView {
 	private int totalQuantity;
 	private int availableQuantity;
 	private float costPerQuantity;
-	private float ratePerQuantity;
 	
 	public int getTotalQuantity() {
 		return totalQuantity;
@@ -24,12 +23,6 @@ public class QuantityInfoView {
 	}
 	public void setCostPerQuantity(float costPerQuantity) {
 		this.costPerQuantity = costPerQuantity;
-	}
-	public float getRatePerQuantity() {
-		return ratePerQuantity;
-	}
-	public void setRatePerQuantity(float ratePerQuantity) {
-		this.ratePerQuantity = ratePerQuantity;
 	}
 
 }

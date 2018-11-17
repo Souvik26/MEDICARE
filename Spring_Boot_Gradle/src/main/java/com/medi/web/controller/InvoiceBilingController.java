@@ -61,7 +61,6 @@ public class InvoiceBilingController {
 			invoiceMaster.setBatchId(stockMasterInfo.getBatchId());
 			invoiceMaster.setExpiryDate(stockMasterInfo.getExpiryDate());
 			invoiceMaster.setCostPerQuantity(stockMasterInfo.getQuantity().getCostPerQuantity());
-			invoiceMaster.setRatePerQuantity(stockMasterInfo.getQuantity().getRatePerQuantity());
 			invoiceMaster.setCustomerName(invoiceInfoView.getCustomerName());
 			invoiceMaster.setCustomerAge(invoiceInfoView.getCustomerAge());
 			invoiceBilingService.addInvoiceInList(invoiceMaster);

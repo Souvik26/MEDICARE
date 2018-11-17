@@ -14,14 +14,7 @@ public class Quantity {
 	private int totalQuantity;
 	private int availableQuantity;
 	private float costPerQuantity;
-	private float ratePerQuantity;
 	
-	public float getRatePerQuantity() {
-		return ratePerQuantity;
-	}
-	public void setRatePerQuantity(float ratePerQuantity) {
-		this.ratePerQuantity = ratePerQuantity;
-	}
 	public float getCostPerQuantity() {
 		return costPerQuantity;
 	}

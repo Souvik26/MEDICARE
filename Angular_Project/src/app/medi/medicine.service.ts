@@ -9,18 +9,16 @@ export class MedicineService {
   constructor(private httpClient : HttpClient) { }
 
   addStock(stockData){
-    var test = {
-      "batchId": 0,
-      "companyName": "ABC",
+    var stockDBData = {
+      "batchId": stockData.batchId,
+      "companyName": stockData.companyName,
       "expiryDate": "2018-11-14T18:31:49.020Z",
       "manufactureDate": "2018-11-14T18:31:49.020Z",
-      "medicineName": "acd",
-      "prize": 0,
+      "medicineName": stockData.medicineName,
+      "prize": stockData.prize,
       "quantity": {
-        "availableQuantity": 0,
-        "costPerQuantity": 0,
-        "ratePerQuantity": 0,
-        "totalQuantity": 0
+        "costPerQuantity": stockData.costPerQuantity,
+        "totalQuantity": stockData.totalQuantity
       }
     };
     this.httpClient.post('/medicare/services/addStock',test).subscribe(
