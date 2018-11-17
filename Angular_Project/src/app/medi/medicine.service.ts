@@ -12,9 +12,9 @@ export class MedicineService {
     var test = {
       "batchId": 0,
       "companyName": "ABC",
-      "expiryDate": "2018-11-10T16:38:43.795Z",
-      "manufactureDate": "2018-11-10T16:38:43.795Z",
-      "medicineName": "ABC",
+      "expiryDate": "2018-11-14T18:31:49.020Z",
+      "manufactureDate": "2018-11-14T18:31:49.020Z",
+      "medicineName": "acd",
       "prize": 0,
       "quantity": {
         "availableQuantity": 0,
@@ -23,8 +23,7 @@ export class MedicineService {
         "totalQuantity": 0
       }
     };
-
-    this.httpClient.post('http://localhost:8085/medicare/services/addStock',test).subscribe(
+    this.httpClient.post('/medicare/services/addStock',test).subscribe(
       (res:Response) => {
           console.log("The Response :: "+res);
         }

@@ -51,8 +51,7 @@ import { MedicineService } from './medi/medicine.service';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    },
-    MedicineService
+    }
   ],
   bootstrap: [AppComponent]
 })
