@@ -1,7 +1,7 @@
 package com.medi.web.view;
 
 public class QuantityInfoView {
-	
+
 	private int totalQuantity;
 	private int availableQuantity;
 	private float costPerQuantity;
